@@ -16,7 +16,7 @@ class BebidasTableViewController: UITableViewController {
         super.viewDidLoad()
         let bdlPath = NSBundle.mainBundle().pathForResource("Drinks", ofType: "plist")
         self.arrBebidas = NSArray(contentsOfFile:bdlPath!)
-        self.navigationItem.title="Bebidas"
+        self.navigationItem.title="Drinks"
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +48,15 @@ class BebidasTableViewController: UITableViewController {
         //DE FORMA NATIVA LA CELDA YA TIENE UNA IMAGEN
         let strImagen = (dictInfo["image"] as! String)
         cell.imageView?.image = UIImage(named:strImagen)
+        
+        
+        let itemSize:CGSize = CGSizeMake(50, 50)
+        UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.mainScreen().scale)
+        let imageRect : CGRect = CGRectMake(0, 0, itemSize.width, itemSize.height)
+        cell.imageView!.image?.drawInRect(imageRect)
+        cell.imageView!.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+       
         
         
         return cell

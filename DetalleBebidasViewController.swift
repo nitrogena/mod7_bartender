@@ -32,9 +32,26 @@ class DetalleBebidasViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         
+        
+        let strDirections = NSMutableString()
+        strDirections.appendString("Directions: \n")
+        strDirections.appendString(self.info?["directions"] as! String)
+        
+    
+        self.txtVwDetalles!.text = strDirections as String
+        
+        
         self.txtVwNombre!.text = self.info?["name"] as! String
-        self.txtVwDetalles!.text = self.info?["directions"] as! String
-        self.txtVwIngredientes!.text = self.info?["ingredients"] as! String
+        //self.txtVwDetalles!.text = self.info?["directions"] as! String
+        
+        
+        let strIngredients = NSMutableString()
+        strIngredients.appendString("Ingredients: \n")
+        strIngredients.appendString(self.info?["ingredients"] as! String)
+        
+        
+        //self.txtVwIngredientes!.text = self.info?["ingredients"] as! String
+        self.txtVwIngredientes!.text = strIngredients as String
         
         let strImagen = self.info?["image"] as! String
         self.imgVwImg.image = UIImage(named:strImagen)

@@ -21,12 +21,19 @@ class ViewController: UIViewController {
                 self.performSegueWithIdentifier("login", sender: self)
             }
         }else{
+            
+            if #available(iOS 8.0, *) {
+
             //variable inmutable
-            let alertControl:UIAlertController = UIAlertController(title: "Mensaje", message: "Todos los campos son requeridos. Por favor, ingréselos", preferredStyle: .Alert)
+            let alertControl:UIAlertController = UIAlertController(title: "Mensaje", message: "Todos los campos son requeridos. Por favor, ingréselos.", preferredStyle: .Alert)
             
             let alertAct = UIAlertAction(title:"Aceptar", style: .Default, handler: nil)
             alertControl.addAction(alertAct)
             self.presentViewController(alertControl, animated: true, completion: nil)
+            }
+            else{
+                UIAlertView(title: "Mensaje", message: "Todos los campos son requeridos. Por favor, ingréselos.", delegate: nil, cancelButtonTitle: "Aceptar").show()
+            }
             
         }
     }
